@@ -4,8 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Fundamentos Avanzados de JavaScrip</h1>
+        <h2>Workwhop #6</h2>
+    </header>
+    <main>
+        <section id="Q1" class="Question">
+            <h2>Pregunta #1:<span class="topic">Scope</span></h2>
+            <p>Teniendo en cuenta este codigo, indica cuales de las variables y funciones son accesibles</p>
+            <article class="code-area">
+                <pre>
+var globalVariable = "Soy una variable global.";
+
+function testScope() {
+// Function Scope
+var functionVariable = "Soy una variable local.";
+
+if (true) {
+// Block Scope
+let blockVariable = "Soy una variable de bloque.";
+console.log("Dentro del bloque:", blockVariable);
+}
+
+console.log("Dentro de la función:", functionVariable);
+}
+
+console.log("Fuera de la función:", globalVariable);
+testScope();
+                </pre>
+            </article>
+        </section>
+
+        <section id="Q2" class="Question">
+            <h2>Pregunta #2:<span class="topic">Hoisting</span></h2>
+            <p>Teniendo en cuenta este codigo, indica cuales de las variables y funciones son accesibles</p>
+            <article class="code-area">
+                <pre>
+// vars call
+console.log("Valor de a:", a);
+console.log("Valor de b:", b);
+console.log("Valor de c:", c);
+
+// functions call
+console.log("Resultado de funcionDeclarada:", funcionDeclarada());
+console.log("Resultado de funcionExpresada:", funcionExpresada());
+
+// vars declaration
+var a = 1;
+let b = 2;
+const c = 3;
+
+// functions declarations
+function funcionDeclarada() {
+return "Función declarada ha sido llamada.";
+}
+
+const funcionExpresada = function () {
+return "Función expresada ha sido llamada.";
+};
+                        </pre>
+            </article>
+        </section>
+
+        <div id="buttonsolve">
+            <button id="solve"> Resolver</button>
+        </div>
+
+        <div id="buttons">
+            <button id="last-question">Anterior</button>
+            <button id="next-question">Siguente</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>

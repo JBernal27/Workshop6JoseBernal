@@ -1,0 +1,70 @@
+html{
+    box-sizing: border-box;
+    margin: 20px;
+    padding: 0px;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+    margin: inherit;
+    padding: inherit;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.topic{
+    color: purple;
+}
+
+.code-area{
+    background-color: rgb(58, 52, 52);
+    color: white;
+    padding: 10px;
+    width: 500px;
+    border-radius: 15px;
+}
+
+h1, h2 ,p, button{
+    text-align: center;
+}
+
+pre{
+    width: 100%
+}
+
+button{
+    color: rgb(255, 255, 0);
+    font-weight: bold;
+    background-color: rgb(78, 78, 255);
+    border-color: transparent;
+    border-radius: 15px;
+    margin-left: 40px;
+    font-size: 1.5rem;
+    padding: 10px;
+    max-width: 300px;
+}
+
+#buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#buttonsolve{
+    display: flex;
+    justify-content: center;
+}
+
+main > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
