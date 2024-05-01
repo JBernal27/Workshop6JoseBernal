@@ -37,7 +37,7 @@ const nextQuestion = () => {
             Q2.style.display = 'flex'
         break
     }
-    actualQuesion++
+    actualQuesion<10 ? actualQuesion++ : actualQuesion
 }
 
 const lastQuestion = () => {
@@ -48,7 +48,7 @@ const lastQuestion = () => {
             Q2.style.display = 'none'
         break
     }
-    actualQuesion--
+    actualQuesion>1 ? actualQuesion-- : actualQuesion
 }
 
 //Funciones de proposito general
@@ -78,7 +78,41 @@ const Question1 = () => {
 }
 
 const Question2 = () => {
+    switch(numberInput("Que crees que va mostrarse como resultado de imprimir a\n 1. Error\n 2. Undefined\n 3. '1'")){
+        case 1:
+            impInf("Incorrecto, ya que esta variable esta iniciada como constante, es decir, que puede ser llamada desde cualquier parte del codigo, lo que mostrara es 'undefined' ya que es como se inicializan las constantes y como podemos ver la inicializacion se hizo por debajo de la impresion")
+        break;
 
+        case 2:
+            impInf("Correcto, ya que al ser var la variable si existe desde que se ejecuta el programa pero al no estar inicializada aun se muestra 'undefined'")
+        break;
+
+        case 3:
+            impInf("Incorrecto, ya que aunque la variable al ser var ya esta creada, es decir, existe; al momento de mostrarla un no ha sido inicializada, se inicializa lineas mas abajo donde si se le da el valor de '1'")
+        break;
+
+        default:
+            impErr("Ingrese una opcion valida")
+            return Question2()
+    }
+
+    switch(numberInput("Que crees que va mostrarse como resultado de imprimir b\n 1. Error\n 2. Undefined\n 3. '2'")){
+        case 1:
+            impInf("Incorrecto, ya que esta variable esta iniciada como constante, es decir, que puede ser llamada desde cualquier parte del codigo, lo que mostrara es 'undefined' ya que es como se inicializan las constantes y como podemos ver la inicializacion se hizo por debajo de la impresion")
+        break;
+
+        case 2:
+            impInf("Correcto, ya que al ser var la variable si existe desde que se ejecuta el programa pero al no estar inicializada aun se muestra 'undefined'")
+        break;
+
+        case 3:
+            impInf("Incorrecto, ya que aunque la variable al ser var ya esta creada, es decir, existe; al momento de mostrarla un no ha sido inicializada, se inicializa lineas mas abajo donde si se le da el valor de '1'")
+        break;
+
+        default:
+            impErr("Ingrese una opcion valida")
+            return Question2()
+    }
 }
 
 const forSolve = () =>{
