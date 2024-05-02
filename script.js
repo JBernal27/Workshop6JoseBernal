@@ -98,15 +98,15 @@ const Question2 = () => {
 
     switch(numberInput("Que crees que va mostrarse como resultado de imprimir b\n 1. Error\n 2. Undefined\n 3. '2'")){
         case 1:
-            impInf("Incorrecto, ya que esta variable esta iniciada como constante, es decir, que puede ser llamada desde cualquier parte del codigo, lo que mostrara es 'undefined' ya que es como se inicializan las constantes y como podemos ver la inicializacion se hizo por debajo de la impresion")
+            impInf("Correcto, ya que esta variable declarada como let, es decir, que su hoisting hace que solo pueda ser llamada despues de su inicializacion")
         break;
 
         case 2:
-            impInf("Correcto, ya que al ser var la variable si existe desde que se ejecuta el programa pero al no estar inicializada aun se muestra 'undefined'")
+            impInf("Incorrecto, ya que esta varibale esta iniciada como let, esto quiere decir que unicamente puede ser llamada despues de la inicializacion, como concecuente, no puede tener ningun valor incluso 'undefined'")
         break;
 
         case 3:
-            impInf("Incorrecto, ya que aunque la variable al ser var ya esta creada, es decir, existe; al momento de mostrarla un no ha sido inicializada, se inicializa lineas mas abajo donde si se le da el valor de '1'")
+            impInf("Incorrecto, ya que las variables no tienen un hoisting que las arrastre arriba por lo que al momento de llamarla no estara creada ademas de que el valor no estara asignada ya que se inicializa junto con su creación")
         break;
 
         default:
