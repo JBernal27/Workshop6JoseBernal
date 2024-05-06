@@ -5,11 +5,12 @@ const Q4 = document.getElementById("Q4")
 const Q5 = document.getElementById("Q5")
 const Q6 = document.getElementById("Q6")
 const Q7 = document.getElementById("Q7")
+const Q8 = document.getElementById("Q8")
 
 const passQuestion = (dir) => {
 
     if(dir){
-        actualQuestion<10 ? actualQuestion++ : actualQuestion
+        actualQuestion<8 ? actualQuestion++ : actualQuestion
     }else{
         actualQuestion>1 ? actualQuestion-- : actualQuestion
     }
@@ -20,11 +21,12 @@ const passQuestion = (dir) => {
     actualQuestion == 4 ? Q4.style.display = 'flex' : Q4.style.display = 'none';
     actualQuestion == 5 ? Q5.style.display = 'flex' : Q5.style.display = 'none';
     actualQuestion == 6 ? Q6.style.display = 'flex' : Q6.style.display = 'none';
-    actualQuestion == 7 ? Q7.style.display = 'flex' : Q7.style.display = 'none';   
+    actualQuestion == 7 ? Q7.style.display = 'flex' : Q7.style.display = 'none';
+    actualQuestion == 8 ? Q8.style.display = 'flex' : Q8.style.display = 'none';   
 
 }
 
-let actualQuestion = 7
+let actualQuestion = 1
 passQuestion()
 
 const solve = document.getElementById("solve")
@@ -280,6 +282,10 @@ const Question7 = () => {
     .catch(menssage => impErr(menssage))
 }
 
+const Question8 = () => {
+    window.location.href = "reservations.html";
+}
+
 const forSolve = () =>{
     switch(actualQuestion)
     {
@@ -303,6 +309,9 @@ const forSolve = () =>{
         break
         case 7:
             Question7()
+        break;
+        case 8:
+            Question8()
         break;
     }
 }

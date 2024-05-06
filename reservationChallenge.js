@@ -1,3 +1,8 @@
+window.addEventListener('load',start)
+const back = document.getElementById('buttonsolve');
+
+back.addEventListener('click', () => window.location.href = "index.html")
+
 //Funciones de proposito general
 
 const textInput = (input) => {
@@ -16,30 +21,44 @@ const numberInput = (msj, num = 0) => {
   }
 }
 
+const dateInput = (msj) =>{
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])$/;
+  while(true){
+    let date = textInput(msj)
+    if (regex.test(date)) {
+      return date
+    } else {
+      impErr("La fecha no coincide con el formato Día/Mes");
+    }
+  }
+}
+
 const impErr = (input) => alert(`Error!\n${input}`)
 
 const impInf = (input) => alert(input)
 
 //Funciones de proposito general
 
+impInf("Iniciando sistema de reservas")
+
 const url = "data.json"
 let roomsList  
 let roomTypesList
 let reservedRooms = []  
 
+function generateGeneratorId() {
+  let id = 1; 
+  return () =>  {
+    return id++;
+  };
+}
+const generateId = generateGeneratorId()
+
 const createReservation = (room, numberGuest) => {
-  function generateGeneratorId() {
-    let id = 1; 
-    return () =>  {
-      return id++;
-    };
-  }
-
-  const generateId = generateGeneratorId()
-
+      
   let guestName = (textInput("Ingrese el nombre del titular de la reserva")).toLowerCase()
-  let startDate = textInput("Ingrese la fecha de inicio (Dia/Mes)")
-  let endDate = textInput("Ingrese la fecha de finalizacion (Dia/Mes)")
+  let startDate = dateInput("Ingrese la fecha de inicio (Dia/Mes)")
+  let endDate = dateInput("Ingrese la fecha de finalizacion (Dia/Mes)")
   
   const reservationInfo = {
     id : generateId(),
@@ -96,7 +115,7 @@ const reservation = () => {
 
 const showAndSearchInReservations = () => {
   let msg = reservedRooms.map(room => "ID reserva: " + room.id + "\nNumero: " + room.roomNumber + "\nTitular: " + room.guestName + "\n---------//---------\n")
-  let guestIdToSearch = numberInput("Habitaciones Reservadas\n\n" +  msg + "\n Seleccione la reservacion a modificar")
+  let guestIdToSearch = numberInput("Habitaciones Reservadas\n\n" +  msg + "\n Ingrese el id de la reservacion a modificar")
   return reservedRooms.find(reservation => reservation.id === guestIdToSearch)
 }
 
@@ -133,10 +152,10 @@ const editReservation = () => {
       op = numberInput(`Menu de Edicion\n\n 1. Editar Fecha de Inicio\n 2. Editar Fecha de Finalizacion\n 0. Salir`)
       switch(op){
         case 1:
-          roomToEdit.startDate = textInput("Ingrese la fecha de inicio (Dia/Mes)")
+          roomToEdit.startDate = dateInput("Ingrese la fecha de inicio (Dia/Mes)")
         break;
         case 2:
-          roomToEdit.endDate = textInput("Ingrese la fecha de finalizacion (Dia/Mes)")
+          roomToEdit.endDate = dateInput("Ingrese la fecha de finalizacion (Dia/Mes)")
         break;
         case 0:
           impInf("Se Guardaron los datos correctamente")
@@ -203,10 +222,12 @@ const loadData = () => {
   })
 }
 
-loadData()
-.then(({ rooms, roomTypes }) => {
-  roomsList = rooms
-  roomTypesList = roomTypes
-  menu()
-})
-.catch(menssage => impErr(menssage))
+function start(){
+  loadData()
+  .then(({ rooms, roomTypes }) => {
+    roomsList = rooms
+    roomTypesList = roomTypes
+    menu()
+  })
+  .catch(menssage => impErr(menssage))
+}
