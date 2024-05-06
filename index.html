@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fundamentos Basicos JavaScrip</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -66,6 +66,152 @@ const funcionExpresada = function () {
 return "Función expresada ha sido llamada.";
 };
                         </pre>
+            </article>
+        </section>
+
+        <section id="Q3" class="Question">
+            <h2>Pregunta #3:<span class="topic">Closures en Acción</span></h2>
+            <p>Teniendo en cuenta este codigo, indica donde se guardaran las variables y como funcionara el contexto de ejecucion</p>
+            <article class="code-area">
+                <pre>
+function crearSumador(num) {
+    return function (num1) {
+        return num + num1;
+    };
+}
+
+const sumarCinco = crearSumador(5);
+const resultado = sumarCinco(3);
+
+                        </pre>
+            </article>
+        </section>
+
+        <section id="Q4" class="Question">
+            <h2>Pregunta #4:<span class="topic">Funciones Declaradas vs Expresadas</span></h2>
+            <p>Teniendo en cuenta este codigo, para responder sobre el funcionamiento de las funciones declaradas y expresaras. Recuerda lo visto en la Pregunta #2</p>
+            <article class="code-area">
+                <pre>
+console.log(
+    "Intentando llamar a 'funcionDeclarada' antes de su declaración:"
+);
+try {
+    console.log(funcionDeclarada());
+} catch (error) {
+    console.log("Error:", error.message);
+}
+    
+console.log(
+    "Intentando llamar a 'funcionExpresada' antes de su declaración:"
+);
+try {
+    console.log(funcionExpresada());
+} catch (error) {
+    console.log("Error:", error.message);
+}
+    
+// Declaración de una función declarada
+function funcionDeclarada() {
+    return "Función declarada ha sido llamada.";
+}
+    
+// Declaración de una función expresada
+const funcionExpresada = function () {
+    return "Función expresada ha sido llamada.";
+};
+    
+console.log("Llamando a 'funcionDeclarada' después de su declaración:");
+console.log(funcionDeclarada());
+    
+console.log("Llamando a 'funcionExpresada' después de su declaración:");
+console.log(funcionExpresada());
+                        </pre>
+            </article>
+        </section>
+
+        <section id="Q5" class="Question">
+            <h2>Pregunta #5:<span class="topic">Promesas y Callbacks en Acción</span></h2>
+            <p>Teniendo en cuenta este codigo, responda las siguientes preguntas</p>
+            <article class="code-area">
+                <pre>
+function manejarAsincronia(callback, promesa) {
+
+    promesa = new Promise((resolve, reject) => {
+        setTimeout(() => {
+        resolve("Promesa resuelta después de 2 segundos");
+        }, 2000);
+    });
+
+    promesa.then((message) => {
+        callback(message);
+    });
+}
+
+let callback =  (message) => {
+console.log("¡Promesa cumplida y callback ejecutado! Mensaje: ", message);
+};
+
+manejarAsincronia(callback); 
+                </pre>
+            </article>
+        </section>
+
+        <section id="Q6" class="Question">
+            <h2>Pregunta #6:<span class="topic">Event Loop y Web API's</span></h2>
+            <p>Teniendo en cuenta este codigo, responda las siguientes preguntas</p>
+            <article class="code-area">
+                <pre>
+console.log("Inicio del script")
+
+setTimeout(()=>{console.log("Primer setTimeout")},0)
+setTimeout(()=>{console.log("Primer setTimeout")},0)
+
+Promise.resolve("Promesa resuelta").then(console.log)
+
+console.log("Fin del script")
+                </pre>
+            </article>
+        </section>
+
+        <section id="Q7" class="Question">
+            <h2>Pregunta #7:<span class="topic">Domina las Web APIs con Promesas y Fetch</span></h2>
+            <p>Analiza el siguiente codigo para comprender como funciona el procedimiento, luego presiona resolver para verlo en accion</p>
+            <article class="code-area">
+                <pre>
+let timeToSet = numberInput("Ingresa el tiempo que quieres que tarde como 
+maximo la solicitud de los datos")
+
+const url = "https://jsonplaceholder.typicode.com/posts"
+
+const loadData = () => {
+    return promise = new Promise((resolve,reject) => {
+        setTimeout( () =>{
+            fetch(url)
+                .then(Response => {
+                    if (!Response.ok) {
+                        reject("Error al cargar los datos")
+                    }
+                    impInf("Datos cargados correctamente")
+                    return Response.json()
+                })
+                .then(data => resolve(data))
+                .catch(message => impErr(message))
+        },timeToSet*1000)
+    })
+}
+
+loadData()
+.then((data) => {
+    let index = numberInput("Ingrese el id del articulo que desea mostrar")-1;
+    let articleToShow = data[index];
+    if (articleToShow) {
+      impInf(`Titulo: ${articleToShow.title}\n Cuerpo: ${articleToShow.body}`)
+    } else {
+      impErr("El índice proporcionado no corresponde a ningún artículo.")
+    }
+})
+.catch(menssage => impErr(menssage))
+                </pre>
             </article>
         </section>
 
