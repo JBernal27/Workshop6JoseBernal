@@ -105,9 +105,10 @@ const reservation = () => {
     roomTypesList.forEach(roomType => roomType.capacity >= capacitySolicited ? avaliableRoomTypes.push(roomType.id) : null)
     roomsList.forEach(room => room.availability && avaliableRoomTypes.includes(room.roomTypeId) ? avaliableRooms.push(room) : null)
     let avaliableRoomsText = avaliableRooms.map(room => "Numero: " + room.number + "\nPrecio: " + room.priceNight + "\n---------//---------\n")  
-    let roomToReserve = numberInput("Habitaciones Disponibles\n\n" + (avaliableRooms.length > 0 ? avaliableRoomsText.toString() : "No hay habitaciones disponibles") + "\n Seleccione la habiacion a reservar")
+    let roomToReserve = numberInput("Habitaciones Disponibles\n\n" + (avaliableRooms.length > 0 ? avaliableRoomsText.toString() : "No hay habitaciones disponibles") + "\n Seleccione la habitacion a reservar o  pulse 0 para volver al menu")
+    roomToReserve === 0 && menu()
     let selectedRoom = avaliableRooms.find(room => room.number === roomToReserve)
-    avaliableRooms.length >  0 ? (selectedRoom ? createReservation(selectedRoom,capacitySolicited) : impErr("Ingrese una de las habitaciones validas")) : null
+    avaliableRooms.length >  0 ? (selectedRoom ? createReservation(selectedRoom,capacitySolicited) :  impErr("Ingrese una de las habitaciones validas") & reservation() ) : null
   }else{
     impErr("No tienemos habitaciones que cumplan con esa capacidad, puede reservar varias repartiendo el numero de personas")
   }  
